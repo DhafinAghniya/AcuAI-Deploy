@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="images/logo-AcuAI.png">
+
+  <title>Acu AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <header>
+    <div class="main-header container">
+      <a class="brand-name" href="#/home">
+        <img src="images/acuAi.png" alt="Logo Aplikasi" width="115" style="margin-left: 30px;" />
+      </a>
+
+      <nav id="navigation-drawer" class="navigation-drawer">
+        <ul id="nav-list" class="nav-list">
+          <li><a href="#/home">Home</a></li>
+          <li><a href="#/about">About Us</a></li>
+          <li><a href="#/feature">Feature</a></li>
+          <li><a href="#/product">Product</a></li>
+          <li><a href="#/community">Community</a></li>
+        </ul>
+      </nav>
+      
+      <button class="btn-scan" onclick="confirmLogout()">Keluar</button>
+      <button id="drawer-button" class="drawer-button">☰</button>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content"></main>
+  <script>
+  // Tampilkan SweetAlert loading saat halaman mulai dimuat
+  Swal.fire({
+    title: 'Loading...',
+    html: 'Mohon tunggu sebentar.',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  // Tutup loading setelah halaman selesai dimuat
+  window.addEventListener('load', () => {
+    Swal.close();
+  });
+</script>
+
+<script>
+  function confirmLogout() {
+    Swal.fire({
+      title: 'Yakin ingin keluar?',
+      text: 'Anda akan keluar dari aplikasi.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, keluar',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Lakukan proses logout
+        localStorage.removeItem('token');
+        sessionStorage.clear();
+
+        // Arahkan ke halaman login atau home
+        window.location.href = '#/'; // atau '/login' sesuai routing kamu
+      }
+    });
+  }
+</script>
+</body>
+
+</html>
